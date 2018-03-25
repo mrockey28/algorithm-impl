@@ -1,16 +1,22 @@
 #include <stdint.h>
 #include <iostream>
+
+
 template <typename T>
 void QuickSort(std::vector<T>& v, int begin, int end)
 {
+    //Don't compare length 1 sub-vectors
     if (end - begin < 1) return;
 
+    //TODO -- improve this. Should pick the middle of begin, end, and (end-begin)/2
     uint64_t pivot = v[end];
     uint64_t i = begin;
     uint64_t j = begin;
 
     while (j <= end)
     {
+        //If j is pointing at a value greater than the pivot,
+        //but i is less than it, swap the two values.
         if (v[j] <= pivot && v[i] > pivot)
         {
             T temp = v[i];
@@ -24,18 +30,11 @@ void QuickSort(std::vector<T>& v, int begin, int end)
         }
     }
 
-    /*std::cout << "Array from " << begin << " to " << end << " with pivot " << pivot << " at element " << i-1 << std::endl;
-    for (int i = begin; i <= end; i++)
-    {
-        std::cout << i << "(" << v[i] << ")" << std::endl;
-    }*/
-
-    //array must have already been sorted.
-    //if (end-begin <= 1) return;
-
+    //Sort the sub-heaps
     QuickSort(v, begin, i-2);
     QuickSort(v, i, end);
 }
+
 
 template <typename T>
 void QuickSort(std::vector<T>& v)

@@ -60,7 +60,7 @@ public:
 
     void ChangePriority(node* nd, S priority)
     {
-        //Todo: implement this.
+        //TODO: implement this.
         (void)nd;
         (void)priority;
     }
